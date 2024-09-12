@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <gazebo>
+        <!-- Sensor plugin use for many plugin eg. lidar camera -->
+        <plugin name="gz::sim::systems::Sensors" filename="gz-sim-sensors-system">
+            <render_engine>ogre2</render_engine>
+        </plugin>
+        <!-- DiffDrive plugin for motor control -->
+        <plugin name="gz::sim::systems::DiffDrive" filename="gz-sim-diff-drive-system">
+            <!-- Wheel Information -->
+            <left_joint>left_wheel_joint</left_joint>
+            <right_joint>right_wheel_joint</right_joint>
+            <wheel_separation>0.35</wheel_separation>
+            <wheel_radius>0.5</wheel_radius>
+            <!-- Limits -->
+            <max_linear_acceleration>4</max_linear_acceleration>
+            <min_linear_acceleration>-4</min_linear_acceleration>
+            <max_angular_acceleration>1</max_angular_acceleration>
+            <min_angular_acceleration>-1</min_angular_acceleration>
+            <max_linear_velocity>0.5</max_linear_velocity>
+            <min_linear_velocity>-0.5</min_linear_velocity>
+            <max_angular_velocity>1</max_angular_velocity>
+            <min_angular_velocity>-1</min_angular_velocity>
+            <!-- Output -->
+            <frame_id>hv_bot/odom</frame_id>
+            <child_frame_id>hv_bot/base_link</child_frame_id>
+            <odom_publish_frequency>1</odom_publish_frequency>
+            <topic>cmd_vel</topic>
+            <odom_topic>odometry</odom_topic>
+            <tf_topic>tf</tf_topic>
+        </plugin>
+    </gazebo>
+</robot>
