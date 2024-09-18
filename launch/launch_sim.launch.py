@@ -16,12 +16,7 @@ def generate_launch_description():
         PathJoinSubstitution([launch_package, 'launch', 'rsp.launch.py']),
         launch_arguments={'use_sim_time': 'true'}.items()
     )
-    # Run Joint state publisher for rviz2 to display moveable joint correctly
-    joint_state_publisher = Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher'
-    )
-    
+        
     world_path = os.path.join(get_package_share_directory('hv_bot'), 'worlds', 'obstacles.sdf')
     # Include the Gazebo launch file, provided by the ros_gz_sim package
     gazebo = IncludeLaunchDescription(
@@ -53,7 +48,6 @@ def generate_launch_description():
     
     return LaunchDescription([
         rsp,
-        joint_state_publisher,
         gazebo,
         spawn_entity,
         bridge,
